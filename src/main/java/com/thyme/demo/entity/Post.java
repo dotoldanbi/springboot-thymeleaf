@@ -33,7 +33,7 @@ public class Post {
     @Column(nullable = false)
     private String title;
     private String url;
-    @Lob
+
     @Column(nullable = false)
     private String content;
     private String shortDescription;
