@@ -27,7 +27,11 @@
                   name="title"
                   th:field="*{title}"
                 />
-                <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
+                <p
+                  th:if="${#fields.hasErrors('title')}"
+                  class="text-danger"
+                  th:errors="*{title}"
+                ></p>
               </div>
 
               <div class="mb-3">
@@ -40,8 +44,11 @@
                   name="shortDescription"
                   th:field="*{shortDescription}"
                 ></textarea>
-                <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger" th:errors="*{shortDescription}"></p>
-
+                <p
+                  th:if="${#fields.hasErrors('shortDescription')}"
+                  class="text-danger"
+                  th:errors="*{shortDescription}"
+                ></p>
               </div>
 
               <div class="mb-3">
@@ -54,7 +61,11 @@
                   name="content"
                   th:field="*{content}"
                 ></textarea>
-                <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}"></p>
+                <p
+                  th:if="${#fields.hasErrors('content')}"
+                  class="text-danger"
+                  th:errors="*{content}"
+                ></p>
               </div>
 
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -65,5 +76,18 @@
     </div>
     <br /><br />
     <div th:replace="admin/footer :: footer"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
+    <script>
+      ClassicEditor.create(document.querySelector("#content")).catch(
+        (error) => {
+          console.error(error);
+        },
+      );
+    </script>
   </body>
 </html>
