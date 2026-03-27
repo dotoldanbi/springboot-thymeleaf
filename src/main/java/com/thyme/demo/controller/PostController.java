@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.thyme.demo.dto.PostDto;
 import com.thyme.demo.service.PostService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostController {
@@ -22,5 +23,12 @@ public class PostController {
         List<PostDto> posts = postService.findAllPosts();
         model.addAttribute("posts", posts);
         return "/admin/posts";
+    }
+
+    @GetMapping("/admin/posts/newpost")
+    public String newPostForm(Model model) {
+        PostDto postDto = new PostDto();
+        model.addAttribute("post", postDto);
+        return "/admin/create_post";
     }
 }
