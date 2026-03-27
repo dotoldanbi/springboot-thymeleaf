@@ -4,11 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.thyme.demo.dto.PostDto;
 import com.thyme.demo.service.PostService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +40,12 @@ public class PostController {
     }
 
     @PostMapping("/admin/post")
-    public String createPost(@ModelAttribute PostDto postDto) {
+    // 폼 에러처리 DTO 검증
+    public String createPost(@Valid @ModelAttribute("post") PostDto postDto, BindingResult result, Model model) {
+        if(result.hasErrors()){
+            model.addAttribute("post", postDto);
+            return "/admin/create_post";
+        }
         postDto.setUrl(getUrl(postDto.getTitle()));
         postService.createPost(postDto);
         return "redirect:/admin/posts";
