@@ -1,1 +1,1 @@
-Springboot + Thymeleaf + mySQL JPA
+Springboot + Thymeleaf + postgres JPA
