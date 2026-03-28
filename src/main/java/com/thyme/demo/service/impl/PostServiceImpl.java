@@ -26,9 +26,27 @@ public class PostServiceImpl implements PostService {
 
         return posts.stream().map((post) -> PostMapper.mapToPostDto(post)).collect(Collectors.toList());
     } 
-
+   @Override
     public void createPost(PostDto postDto) {
         Post post = PostMapper.mapToPost(postDto);
         postRepository.save(post);
+    }
+
+    @Override
+    public PostDto findPostById(Long postId) {
+        
+        Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException("No data post"));
+        return PostMapper.mapToPostDto(post);
+    }
+
+    @Override
+    public void updatePost(PostDto postDto) {
+        Post post = PostMapper.mapToPost(postDto);
+        postRepository.save(post);
+    }
+
+    @Override
+    public void deletePost(Long postId) {
+        postRepository.deleteById(postId);
     }
 }
